@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="
+                http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                http://www.springframework.org/schema/tx 
+                http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+                http://www.springframework.org/schema/mvc
+                http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+                http://www.springframework.org/schema/security
+                http://www.springframework.org/schema/security/spring-security-3.1.xsd
+                http://www.springframework.org/schema/task 
+                http://www.springframework.org/schema/task/spring-task-4.3.xsd">
+    
+    <context:component-scan base-package="com.ft.controller" />
+     <context:annotation-config />
+      <mvc:annotation-driven />  
+      
+      <bean id="surl" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+          <property name="mappings">
+              <props>
+                  <prop key="/aboutus.htm">pvc1</prop>
+                  <prop key="/contactus.htm">pvc2</prop>
+                  <prop key="/register_success.htm">pvc3</prop>
+              </props>
+          </property>
+    </bean>
+
+    <bean id="pvc1" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="aboutus"/>
+    </bean>
+    
+    <bean id="pvc2" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="contactus"/>
+    </bean>
+    
+     <bean id="pvc3" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="register_success"/>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+</beans>
